@@ -41,6 +41,22 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
+class ClothingItem(BaseModel):
+    """
+    Clothing inventory items
+    Collection name: "clothingitem"
+    """
+    name: str = Field(..., description="Item name, e.g., \"Denim Jacket\"")
+    category: str = Field(..., description="Category, e.g., Tops, Bottoms, Outerwear")
+    size: str = Field(..., description="Size label, e.g., S, M, L, 32, One-Size")
+    color: str = Field(..., description="Primary color")
+    quantity: int = Field(0, ge=0, description="Units in stock")
+    sku: Optional[str] = Field(None, description="Stock keeping unit")
+    brand: Optional[str] = Field(None, description="Brand name")
+    price: Optional[float] = Field(None, ge=0, description="Unit price")
+    location: Optional[str] = Field(None, description="Storage location or rack")
+    notes: Optional[str] = Field(None, description="Any extra notes")
+
 # Note: The Flames database viewer will automatically:
 # 1. Read these schemas from GET /schema endpoint
 # 2. Use them for document validation when creating/editing
